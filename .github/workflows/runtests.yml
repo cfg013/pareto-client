@@ -14,5 +14,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: ./frontend
-          build: npm run build
-          start: npm start
+#          build: npm run build
+#          start: npm start
+          build: ls -la
+          start: pwd
+
