@@ -9,7 +9,7 @@ jobs:
       - name: pwd
         run: pwd
       - name: list directory
-        run: ls -al frontend
+        run: ls -al
       - name: Rename pnpm-lock.yaml because Cypress can have only "pnpm" OR "npm" OR "yarn" lock file
         run: mv frontend/pnpm-lock.yaml frontend/pnpm-lock.yaml.org
       - name: Checkout
