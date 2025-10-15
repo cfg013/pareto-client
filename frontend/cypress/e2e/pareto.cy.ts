@@ -51,7 +51,7 @@ describe('Pareto client test', () => {
   })
 
 
-  it.only('Handling new Browser Tab', function () {
+  it('Handling new Browser Tab', function () {
       cy.get('[data-id="101c28f7-f195-41a8-956b-c22fdbb90b5f"] > \
         .con-kit-component-link-group > .con-kit-component-button')
         .should('have.attr', 'target')
@@ -72,13 +72,6 @@ describe('Pareto client test', () => {
       cy.log('hgjdhdjkakjfsdfhksdkfhskfhsfhuuhfufhufhfhufuhfafa')      
   })
 })  
-
-// describe('Login test', () => {
-//   it.only('Login', function () {
-//       cy.visit('https://pareto.space')
-//       cy.get('._f769e4ba').click()
-//   })
-// })              
 
 
 // // "print" the class name (noch nicht richtig verstanden)
