@@ -6,8 +6,8 @@ jobs:
   cypress-run:
     runs-on: ubuntu-24.04
     steps:
-      - name: Print working directory
-        run: pwd
+      - name: Rename pnpm-lock.yaml because Cypress can have only "pnpm" OR "npm" OR "yarn" lock file
+        run: mv frontend pnpm-lock.yaml pnpm-lock.yaml.org
       - name: Checkout
         uses: actions/checkout@v4
       # Install npm dependencies, cache them correctly
@@ -19,4 +19,5 @@ jobs:
 #          build: npm run build
 #          start: npm start
 #          build: npx cypress info          
-
+      - name: Rename back
+        run: mv frontend pnpm-lock.yaml.org pnpm-lock.yaml
