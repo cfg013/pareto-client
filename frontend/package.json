@@ -19,6 +19,7 @@
     "blossom-client-sdk": "^1.1.1",
     "node": "^22.14.0",
     "nostr-zap": "github:rodant/nostr-zap#pareto-main",
+    "open": "^10.2.0",
     "prismjs": "^1.27.0"
   },
   "devDependencies": {

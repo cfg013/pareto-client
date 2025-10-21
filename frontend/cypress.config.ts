@@ -12,6 +12,7 @@ export default defineConfig({
     },
     "watchForFileChanges":true,
     "viewportWidth": 1200,      // Pareto page is bigger than default width
+    "experimentalStudio":true,  // for Recorder
   },
 });
 
