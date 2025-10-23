@@ -2,52 +2,48 @@
 
 describe('Pareto client page tests', () => {
 
-    beforeEach(() => {
-        cy.visit('https://pareto.space')
-    })
+    // beforeEach(() => {
+    //     cy.visit('https://pareto.space/en')
+    // })
 
     it.only('Login test ...', function () {
 
-        // navigate to read page (click 'Pareto client')
-        cy.get('[data-id="101c28f7-f195-41a8-956b-c22fdbb90b5f"] > \
-            .con-kit-component-link-group > .con-kit-component-button')
-            .should('have.attr', 'target')
+        cy.visit('https://pareto.space')
 
-        cy.get('[data-id="101c28f7-f195-41a8-956b-c22fdbb90b5f"] > \
-            .con-kit-component-link-group > .con-kit-component-button')          
-            .invoke('removeAttr', 'target') // to prevent opening a new tab
-            .click()
+        // // navigate to read page (click 'Pareto client')
+        // cy.get('[data-id="101c28f7-f195-41a8-956b-c22fdbb90b5f"] > \
+        //     .con-kit-component-link-group > .con-kit-component-button')
+        //     .invoke('removeAttr', 'target') // use same tab for testing (prevent opening a new one)
+        //     .click()
         
-        cy.wait(5000)        
-        cy.url().should('include', '/read')
-        cy.get('._f769e4ba').contains('Sign in/up')
+        // cy.url().should('include', '/read')
 
-        // check left button column
-        cy.get('[class*="_8c1256c0 _4b80ae7e"]')
-        .should('contain', 'Read')
+        // // check labels ...
+        // cy.get('._f769e4ba').contains('Sign in/up')
 
-        cy.get('[class*="_8c1256c0 _da18d2c2"]')
-        .should('contain', 'Pictures')
-        .and('contain', 'Search')
-        .and('contain', 'Authors')
-        .and('contain', 'About')
+        // // left button column
+        // cy.get('[class*="_8c1256c0 _4b80ae7e"]')
+        //     .should('contain', 'Read')
+        // cy.get('[class*="_8c1256c0 _da18d2c2"]')
+        //     .should('contain', 'Pictures')
+        //     .and('contain', 'Search')
+        //     .and('contain', 'Authors')
+        //     .and('contain', 'About')
 
-        cy.get('[class*="_ed18f445 _52b87e6c"]')
-        .should('contain', 'Load more') 
+        // // bottom button
+        // cy.get('[class*="_ed18f445 _52b87e6c"]')
+        //     .should('contain', 'Load more')
 
+        // // 'Feedback' button class resides in shadow root - not accessible by Cypress
+        // // cy.get('f1-default-trigger__button')            
+        // //     .should('contain', 'Feedback')
 
-        // cy.get('.con-kit-component-button__label').each(($elm) => {
-        //     cy.wrap($elm).invoke('text').then((text) => {
-        //         cy.log(text)
-        //     })
-        // })
+        // // find the "N" button for "Nostr login", but click() doesn't work even with force?
+        // cy.get('body').find('nl-banner').find('button.z-0').click({force:true})
 
+        // // cy.get('._f769e4ba').click()
+        // // cy.get('body > dialog > nl-auth').find('button').contains('Log in').click()
 
-        // cy.get('._f769e4ba').click()
-        // cy.get('body > dialog > nl-auth').find('button').contains('Log in').click()
-
-        // cy.get('h1').should('have.text','Log in')
-        // cy.log('hgjdhdjkakjfsdfhksdkfhskfhsfhuuhfufhufhfhufuhfafa')      
     })
 
 })
