@@ -2,6 +2,7 @@
 
 describe('Pareto client page tests', () => {
 
+
     // beforeEach(() => {
     //     cy.visit('https://pareto.space/en')
     // })
