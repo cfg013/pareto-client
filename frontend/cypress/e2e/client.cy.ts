@@ -9,7 +9,7 @@ describe('Pareto client page tests', () => {
 
     it.only('Login test ...', function () {
 
-        cy.visit('https://pareto.space')
+        cy.visit('https://pareto.space/read')
 
         // // navigate to read page (click 'Pareto client')
         // cy.get('[data-id="101c28f7-f195-41a8-956b-c22fdbb90b5f"] > \
