@@ -17,6 +17,8 @@
             "DOM"
         ],
         "noEmit": true,
-        "strict": true
-    }
+        "strict": true,
+        "types": ["cypress", "node"]
+    },
+    "include": ["**/*.ts"]
 }

@@ -37,7 +37,7 @@ describe('Pareto client page tests', () => {
     })
 
 
-    it.only('Check Login', function () {
+    it('Check Login', function () {
 
         cy.visit('https://pareto.space/read')
 
@@ -82,7 +82,7 @@ describe('Pareto client page tests', () => {
             .should('be.visible')
             .should('be.enabled')                            
             .click()
-    })        
+    })
 })
 
 

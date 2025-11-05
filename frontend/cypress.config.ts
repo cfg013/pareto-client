@@ -2,6 +2,9 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   e2e: {
+    includeShadowDom: true,   // for "#shadow-root (open)" elements in DOM
+    watchForFileChanges: true,
+    viewportWidth: 1280,      // Pareto page is bigger than default width 1000
     setupNodeEvents(on, config) {
       on('task', {
         log(message) {
@@ -10,14 +13,6 @@ export default defineConfig({
         },
       })
     },
-    "watchForFileChanges":true,
-    "viewportWidth": 1200,      // Pareto page is bigger than default width
-    //"experimentalPromptCommand": true
-  },  
+  },
 });
 
-module.exports = {
-  e2e: {
-    includeShadowDom:true
-  }
-}
