@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
-import "cypress-real-events";
+//https://github.com/dmtrKovalenko/cypress-real-events
+//import "cypress-real-events";
 
 describe('Pareto client page tests', () => {
 
