@@ -46,7 +46,7 @@ describe('Pareto client page tests', () => {
         cy.wait(1000) 
 
         // click Sign in/up
-        cy.getByData('"Sign in/up"')
+        cy.getByData('Sign in/up')
             .should('be.visible')
             .should('be.enabled')    
             .click()
@@ -70,7 +70,7 @@ describe('Pareto client page tests', () => {
             .click()
 
         // repeat above sequence
-        cy.getByData('"Sign in/up"')
+        cy.getByData('Sign in/up')
             .should('be.visible')
             .should('be.enabled')    
             .click()

@@ -3,13 +3,13 @@
 describe('Pareto start page tests', () => {
 
     beforeEach(() => {
-        cy.visit('https://test.pareto.space/en')
+        cy.visit('https://pareto.space/en')
     })
 
     it('check English', () => {
 
         cy.get('.con-kit-component-button__label')
-            .should('have.length', 14) 
+            .should('have.length', 15) 
             .should('contain', 'Pareto client')
             .and('contain', 'DE')
             .and('contain', 'Pareto Secure Mail')
@@ -52,9 +52,16 @@ describe('Pareto start page tests', () => {
             .and('be.visible')
             .click()
 
+        // // for debugging: log all labels
+        // cy.get('.con-kit-component-button__label').each(($elm) => {
+        //     cy.wrap($elm).invoke('text').then((text) => {
+        //         cy.log(text)
+        //     })
+        // })
+
         cy.get('.con-kit-component-button__label')
-            .should('have.length', 18) 
-            .should('contain', 'Pareto Client')
+            .should('have.length', 19) 
+            .should('contain', 'Pareto Projekt')
             .and('contain', 'EN')
             .and('contain', 'Pareto Secure-Mail')
             .and('contain', 'Zur Pareto-Bildergalerie')
