@@ -395,7 +395,7 @@ describe('Pareto uitest', () => {
 
     })    
 
-    it.only('Calendar', function () {
+    it('Calendar', function () {
 
         // Freeze time at the specified date
         const now = new Date(2025, 10, 11)
