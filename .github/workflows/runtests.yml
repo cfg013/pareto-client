@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # - name: Rename pnpm-lock.yaml because Cypress can have only "pnpm" OR "npm" OR "yarn" lock file
-      #   run: mv frontend/pnpm-lock.yaml frontend/pnpm-lock.yaml.org
+      - name: Rename pnpm-lock.yaml because Cypress can have only "pnpm" OR "npm" OR "yarn" lock file
+        run: mv frontend/pnpm-lock.yaml frontend/pnpm-lock.yaml.org
      # - name: check typescript installation
        # run: tsc -v        
       # Install npm dependencies, cache them correctly
