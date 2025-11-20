@@ -3,9 +3,9 @@
 //https://github.com/dmtrKovalenko/cypress-real-events
 //import "cypress-real-events";
 
-describe('Pareto client page tests', () => {
+describe('/read page tests', () => {
 
-    it('Enter page, check buttons', function () {
+    it('check buttons', function () {
 
         cy.visit('https://pareto.space/en')
 
@@ -37,7 +37,7 @@ describe('Pareto client page tests', () => {
     })
 
 
-    it('Check Login', function () {
+    it('Login-options', function () {
 
         cy.visit('https://pareto.space/read')
 
@@ -82,8 +82,13 @@ describe('Pareto client page tests', () => {
             .should('be.visible')
             .should('be.enabled')                            
             .click()
+
+        // click Connect
+        cy.get('body > dialog > nl-auth')
+            .find('button')
+            .contains('Connect')
+            .should('be.visible')
+            .should('be.enabled')
+            .click()
     })
 })
-
-
-//        cy.go("back")
