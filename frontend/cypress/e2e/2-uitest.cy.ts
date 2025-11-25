@@ -398,7 +398,7 @@ describe('Pareto uitest', () => {
     it('Calendar', function () {
 
         // Freeze time at the specified date
-        const now = new Date(2025, 10, 11)
+        const now = new Date(2025, 10, 11) // 11th Nov
         cy.clock(now.getTime(), ['Date'])
 
         // re-visit
