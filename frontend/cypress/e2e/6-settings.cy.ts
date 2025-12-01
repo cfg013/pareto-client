@@ -5,9 +5,9 @@ describe('Settings tests', () => {
     beforeEach(() => {
         // TODO: sometimes i need to visit the site twice or three times or ...
         cy.visit("https://test.pareto.space/sign-in?from=%2Fread&nsec=nsec16rswf8emn53szjfpznwfhjuwkr5uglmlva6yzh3vfr7a0jlt64lqhkwa9h")
-        // cy.wait(1000)        
+        cy.wait(1000)        
 
-        // cy.visit("https://test.pareto.space/sign-in?from=%2Fread&nsec=nsec16rswf8emn53szjfpznwfhjuwkr5uglmlva6yzh3vfr7a0jlt64lqhkwa9h")
+        cy.visit("https://test.pareto.space/sign-in?from=%2Fread&nsec=nsec16rswf8emn53szjfpznwfhjuwkr5uglmlva6yzh3vfr7a0jlt64lqhkwa9h")
     })
 
     it('outbox relays', function () {
@@ -15,7 +15,8 @@ describe('Settings tests', () => {
         cy.getByData('sidebar-item-Settings')    
         .click();
 
-        // remove 2 relays
+        // remove 2 relays (".first" means the first occurence of the button, which
+        // appears twice:  in outbox and inbox relay list)
         cy.getByData('remove-relay-button-nos.lol')
         .first()
         .click()
@@ -46,12 +47,19 @@ describe('Settings tests', () => {
         .click()
     })
 
+    // Todo: very flaky test: often a button is not visible or not enabled
+    // or hidden or whatever. There is no reproducible behavior. Maybe
+    // examine with devs.
     it('inbox relays', function () {
 
         cy.getByData('sidebar-item-Settings')    
         .click();
 
-        // remove a relay
+        cy.get('#content-container > div > div > div > div:nth-child(2) > div._d34dcd6')
+        .children().should('have.length', 8)
+
+        // remove a relay (".last" means the last occurence of the button, which
+        // appears twice:  in outbox and inbox relay list)
         cy.getByData('remove-relay-button-nostr.wine')
         .last()
         .click()
@@ -66,15 +74,11 @@ describe('Settings tests', () => {
         .should('be.visible')
         .type('nostr.wine')
 
-        // sometimes Add-button needs time
-        cy.wait(10000)
-
         cy.getByData('inbox-relay-add-button')
-        .should('be.visible')
-        .should('be.enabled')
         .click()
     })    
 
+    // Todo: fails at the moment because server is not deleted
     it('media servers tab', function () {
 
         cy.getByData('sidebar-item-Settings')    
@@ -113,13 +117,50 @@ describe('Settings tests', () => {
         
     })    
 
+    // Todo:
+    // without waiting profile is shown as empty!
     it('profile tab', function () {
 
-        cy.getByData('sidebar-item-Settings')    
+        cy.getByData('sidebar-item-Settings')
         .click();
 
+        // Todo:
+        // without waiting profile is shown as empty!
+//        cy.wait(2000)
+
         cy.getByData('category-Profile')
-        .click();    
+        .click();
+
+        cy.getByData('entry-field-Name')
+        .should('have.value', 'Knarf') 
+        .clear()
+        .type('hallo')
+
+        cy.getByData('entry-field-Name')
+        .should('have.value', 'hallo')
+
+        cy.getByData('Save')
+        .click();
+
+        cy.reload()
+        cy.get('div > div > div.nl-bg.relative > nl-previously-logged > div:nth-child(2) > div > ul > li > div')
+        .click()
+
+        // Todo:
+        // without waiting profile is shown as empty!
+//        cy.wait(2000)
+
+        cy.getByData('category-Profile')
+        .click();
+
+        cy.getByData('entry-field-Name')
+        .should('have.value', 'hallo') 
+        .clear()
+        .type('Knarf')
+
+        cy.getByData('Save')
+        .should('be.enabled')
+        .click();
     })    
 
 

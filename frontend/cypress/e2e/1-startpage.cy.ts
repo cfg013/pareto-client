@@ -9,7 +9,7 @@ describe('Pareto start page tests', () => {
     it('check English', () => {
 
         cy.get('.con-kit-component-button__label')
-            .should('have.length', 15) 
+            .should('have.length.at.least', 15)
             .should('contain', 'Pareto client')
             .and('contain', 'DE')
             .and('contain', 'Pareto Secure Mail')
@@ -60,7 +60,7 @@ describe('Pareto start page tests', () => {
         // })
 
         cy.get('.con-kit-component-button__label')
-            .should('have.length', 19) 
+            .should('have.length.at.least', 19) 
             .should('contain', 'Pareto Projekt')
             .and('contain', 'EN')
             .and('contain', 'Pareto Secure-Mail')

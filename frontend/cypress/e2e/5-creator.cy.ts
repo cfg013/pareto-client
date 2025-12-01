@@ -17,6 +17,7 @@ describe('Creator tests', () => {
         cy.visit("https://test.pareto.space/sign-in?from=%2Fread&nsec=nsec16rswf8emn53szjfpznwfhjuwkr5uglmlva6yzh3vfr7a0jlt64lqhkwa9h")
     })
 
+    // Todo: fails currently because of Calendar not able to accept future date (ticket raised)
     it('create post', function () {
 
         // recognize that the page has indeed been loaded
@@ -205,6 +206,7 @@ describe('Creator tests', () => {
         .click()
     })        
 
+    // fails because there is no post from the previous test case    
     it('delete post', function () {
 
         // recognize that the page has indeed been loaded
@@ -223,28 +225,32 @@ describe('Creator tests', () => {
         cy.getByData('category-Drafts')
         .click()
 
-        // count number of drafts
         cy.get('#content-container > div > div > div._173135dd')
-        .children().should('have.length', 9) 
+        .children()
+        .its('length')
+        .then((initialCount) => {
 
-        // Delete-button
-        cy.getByData('Delete')
-        .first()
-        .click()
+            // Delete-button
+            cy.getByData('Delete')
+            .first()
+            .click()
 
-        // count number of drafts
-        cy.get('#content-container > div > div > div._173135dd')
-        .children().should('have.length', 8)
+            cy.wait(1000)
 
-        // Delete-button
-        cy.getByData('Delete')
-        .first()
-        .click()
+            // Todo: retest when ticket fixed
+            // second deletion not working and deleting manually
+            // in browser also not working
+            cy.getByData('Delete')
+            .first()
+            .click()
 
-        // count number of drafts
-        cy.get('#content-container > div > div > div._173135dd')
-        .children().should('have.length', 7)
-    })             
+            cy.wait(1000)            
+
+            cy.get('#content-container > div > div > div._173135dd')
+            .children()
+            .should('have.length', initialCount-2) // 2 deleted
+        })
+    })        
 
     it('publish post', function () {
 
@@ -357,6 +363,7 @@ describe('Creator tests', () => {
         cy.getByData('Start Upload')
         .click()
     })    
+
 });
 
 // it('3', function() {

@@ -39,7 +39,7 @@ describe('/read page tests', () => {
         cy.getByData('interaction-icon-bookmark-button')
         .should('be.visible')
         .should('be.enabled')
-        .first()
+        .eq(4)
         .click()
 
         // check bookmark exist with 2 items
@@ -67,8 +67,10 @@ describe('/read page tests', () => {
 
         // delete 2nd bookmark        
         cy.get('#content-container > div > div > div._173135dd > div > div._537cd559 > div._1b5fdb8 > div')
-        .should('be.visible')
-        .last()
+        .should('be.visible')        
+//        .last()
+//        .eq(4)        
+        .first()
         .click()
 
         // check "Bookmark"-button not exist (if "Authors" exist then "Bookmark" is missing)
