@@ -304,7 +304,7 @@ describe('Pareto uitest', () => {
         cy.getByData('copy-to-clipboard-button')
         .click({force: true})
 
-        // this is flaky and doesn't work e.g. when saving test (watchForFileChanges mode)
+        // this is flaky and doesn't work e.g. when saving test (watchForFileChanges:true mode)
         cy.get('#content-container > div > div > div > div:nth-child(15) > div > div > div')
         .should('not.exist')
 

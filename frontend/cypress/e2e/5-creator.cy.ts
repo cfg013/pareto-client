@@ -152,19 +152,19 @@ describe('Creator tests', () => {
         // show current posts in Drafts
         cy.get('body > div > div > div > aside > div > div._fb2f033d._4b80ae7e')
         .click()
-        cy.getByData('category-Drafts')
+        cy.getByData('category-posts-drafts')
         .click()
 
         // show current posts in Published
         cy.get('body > div > div > div > aside > div > div._fb2f033d._4b80ae7e')
         .click()
-        cy.getByData('category-Published')
+        cy.getByData('category-posts-published')
         .click()
 
         // back to Drafts
         cy.get('body > div > div > div > aside > div > div._fb2f033d._4b80ae7e')
         .click()
-        cy.getByData('category-Drafts')
+        cy.getByData('category-posts-drafts')
         .click()
 
         // Edit-button
@@ -183,7 +183,7 @@ describe('Creator tests', () => {
         // show current posts in Drafts
         cy.get('body > div > div > div > aside > div > a:nth-child(1) > span')
         .click()
-        cy.getByData('category-Drafts')
+        cy.getByData('category-posts-drafts')
         .click()
 
         // Copy-button
@@ -202,7 +202,7 @@ describe('Creator tests', () => {
         // show current posts in Drafts
         cy.get('body > div > div > div > aside > div > a:nth-child(1) > span')
         .click()
-        cy.getByData('category-Drafts')
+        cy.getByData('category-posts-drafts')
         .click()
     })        
 
@@ -222,7 +222,7 @@ describe('Creator tests', () => {
         // show current posts in Drafts
         cy.get('body > div > div > div > aside > div > div._fb2f033d._4b80ae7e')
         .click()
-        cy.getByData('category-Drafts')
+        cy.getByData('category-posts-drafts')
         .click()
 
         cy.get('#content-container > div > div > div._173135dd')
@@ -252,6 +252,7 @@ describe('Creator tests', () => {
         })
     })        
 
+    // Todo: fails because Publish doesn't work
     it('publish post', function () {
 
         // recognize that the page has indeed been loaded
@@ -267,7 +268,7 @@ describe('Creator tests', () => {
         // show current posts in Published
         cy.get('body > div > div > div > aside > div > div._fb2f033d._4b80ae7e')
         .click()
-        cy.getByData('category-Published')
+        cy.getByData('category-posts-published')
         .click()
 
         // check number of published articles
@@ -277,7 +278,7 @@ describe('Creator tests', () => {
         // show current posts in Drafts
         cy.get('body > div > div > div > aside > div > div._fb2f033d._4b80ae7e')
         .click()
-        cy.getByData('category-Drafts')
+        cy.getByData('category-posts-drafts')
         .click()
 
         // Open first draft
@@ -300,7 +301,7 @@ describe('Creator tests', () => {
         // show current posts in Published
         cy.get('body > div > div > div > aside > div > div._fb2f033d._4b80ae7e')
         .click()
-        cy.getByData('category-Published')
+        cy.getByData('category-posts-published')
         .click()
 
         // check number of published articles
