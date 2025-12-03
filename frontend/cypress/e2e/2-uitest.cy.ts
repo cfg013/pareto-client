@@ -3,7 +3,7 @@
 describe('Pareto uitest', () => {
 
     beforeEach(() => {
-        cy.visit('https://pareto.space/uitest')
+        cy.visit('https://test.pareto.space/uitest')
     })
 
     const text_long='saulangertext_saulangertext_saulangertext_saulangertext_saulangertext_'+
