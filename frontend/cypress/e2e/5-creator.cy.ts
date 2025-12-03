@@ -366,39 +366,3 @@ describe('Creator tests', () => {
     })    
 
 });
-
-// it('3', function() {
-//     cy.visit('https://test.pareto.space/sign-in?from=%2Fread&nsec=nsec16rswf8emn53szjfpznwfhjuwkr5uglmlva6yzh3vfr7a0jlt64lqhkwa9h')
-//     cy.get('#switch-background').click();
-//     cy.get('[data-test="switch-Reader-Creator"]').check();
-//     cy.get('[data-test="sidebar-item-Search"] span._8c1256c0').click();
-//     cy.get('[data-test="sidebar-item-Media"] span._8c1256c0').click();
-//     cy.get('[data-test="sidebar-item-Settings"] span._8c1256c0').click();
-//     cy.get('div:nth-child(4) span._8c1256c0').click();
-//     cy.get('div:nth-child(3) span._8c1256c0').click();
-//     cy.get('span._4b80ae7e').click();
-//     cy.get('[data-test="sidebar-item-Media"] span._8c1256c0').click();
-//     cy.get('[data-test="sidebar-item-Settings"] span._8c1256c0').click();
-//     cy.get('div:nth-child(1) > [data-test="remove-relay-button-nostr.pareto.space"] > svg.feather').click();
-//     cy.get('#content-container input[list="outbox-relay-suggestions"]').click();
-//     cy.get('#content-container input[list="outbox-relay-suggestions"]').type('nostr.pareto.space');
-//     cy.get('[data-test="outbox-relay-add-button"]').click();
-//     cy.get('#content-container input[list="outbox-relay-suggestions"]').click();
-//     cy.get('#content-container input[list="outbox-relay-suggestions"]').type('pareto.nostr1.com');
-//     cy.get('[data-test="outbox-relay-add-button"]').click();
-//     cy.get('#content-container h3._72fcf76a').click();
-//     cy.get('#content-container input[list="outbox-relay-suggestions"]').click();
-//     cy.get('#content-container input[list="outbox-relay-suggestions"]').type('nos.lol');
-//     cy.get('[data-test="outbox-relay-add-button"]').click();
-//     cy.get('#content-container input[list="outbox-relay-suggestions"]').click();
-//     cy.get('#content-container input[list="outbox-relay-suggestions"]').type('offchain.pub');
-//     cy.get('[data-test="outbox-relay-add-button"]').click();
-//     cy.get('[data-test="sidebar-item-Posts"] span._8c1256c0').click();
-//     cy.get('[data-test="category-Drafts"]').click();
-//     cy.get('a[href="/write?a=naddr1qqxnzdekxscrwwpc8ymrzwfcqgsfkppggzzr8szy8nsec16rswf8emn53szjfpznwfhjuwkr5uglmlva6yzh3vfr7a0jlt64lqhkwa9hxwgey0xyhhefyq407llqcalrylrrv62w6ut3pqrqsqqqa2gcu8xup"]').click();
-//     cy.get('[data-test="Publish..."]').click();
-//     cy.get('[data-test="Publish article"]').click();
-//     cy.get('[data-test="Ok"]').click();
-    
-// });
-

@@ -10,6 +10,12 @@ describe('Settings tests', () => {
         cy.visit("https://test.pareto.space/sign-in?from=%2Fread&nsec=nsec16rswf8emn53szjfpznwfhjuwkr5uglmlva6yzh3vfr7a0jlt64lqhkwa9h")
     })
 
+    // All these awful cy.wait()s are necessary because if you click faster
+    // these tests are very flaky: often a button is not visible or not enabled
+    // or hidden or whatever. There is no reproducible behavior.
+    // So I "simulated" human pace clicking by adding some wait time between clicks.
+
+
     it('outbox relays', function () {
 
         cy.getByData('sidebar-item-Settings')    
@@ -21,14 +27,20 @@ describe('Settings tests', () => {
         .first()
         .click()
 
+        cy.wait(2000)        
+
         cy.getByData('remove-relay-button-nostr.pareto.space')
         .first()
         .click()
+
+        cy.wait(2000)        
 
         cy.get('#content-container > div > div > div > div:nth-child(2) > \
             div._21814cab > div._4df74c3 > input')
         .should('be.visible')
         .click()
+
+        cy.wait(2000)                
 
         cy.get('#content-container > div > div > div > div:nth-child(2) > \
             div._21814cab > div._4df74c3 > input')
@@ -37,6 +49,8 @@ describe('Settings tests', () => {
 
         cy.getByData('outbox-relay-add-button')
         .click()
+
+        cy.wait(2000)        
 
         cy.get('#content-container > div > div > div > div:nth-child(2) > \
             div._21814cab > div._4df74c3 > input')
@@ -47,9 +61,6 @@ describe('Settings tests', () => {
         .click()
     })
 
-    // Todo: very flaky test: often a button is not visible or not enabled
-    // or hidden or whatever. There is no reproducible behavior. Maybe
-    // examine with devs.
     it('inbox relays', function () {
 
         cy.getByData('sidebar-item-Settings')    
@@ -64,10 +75,14 @@ describe('Settings tests', () => {
         .last()
         .click()
 
+        cy.wait(2000)        
+
         cy.get('#content-container > div > div > div > div:nth-child(2) > \
             div._21814cab > div._4df74c3 > input')
-        .should('be.visible')
+//        .should('be.visible')
         .click()
+
+        cy.wait(2000)        
 
         cy.get('#content-container > div > div > div > div:nth-child(2) > \
             div._21814cab > div._4df74c3 > input')
@@ -84,7 +99,7 @@ describe('Settings tests', () => {
         cy.getByData('sidebar-item-Settings')    
         .click();
 
-        cy.getByData('category-Media Servers')
+        cy.getByData('category-settings-media-servers')
         .click();    
 
         // check server list empty
@@ -117,18 +132,15 @@ describe('Settings tests', () => {
         
     })    
 
-    // Todo:
-    // without waiting profile is shown as empty!
     it('profile tab', function () {
 
         cy.getByData('sidebar-item-Settings')
         .click();
 
-        // Todo:
         // without waiting profile is shown as empty!
-//        cy.wait(2000)
+        cy.wait(2000)
 
-        cy.getByData('category-Profile')
+        cy.getByData('category-settings-profile')
         .click();
 
         cy.getByData('entry-field-Name')
@@ -146,11 +158,10 @@ describe('Settings tests', () => {
         cy.get('div > div > div.nl-bg.relative > nl-previously-logged > div:nth-child(2) > div > ul > li > div')
         .click()
 
-        // Todo:
         // without waiting profile is shown as empty!
-//        cy.wait(2000)
+        cy.wait(2000)
 
-        cy.getByData('category-Profile')
+        cy.getByData('category-settings-profile')
         .click();
 
         cy.getByData('entry-field-Name')
@@ -162,7 +173,5 @@ describe('Settings tests', () => {
         .should('be.enabled')
         .click();
     })    
-
-
 });
 

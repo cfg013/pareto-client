@@ -43,7 +43,7 @@ declare namespace Cypress {
 }
 
 Cypress.Commands.add("getByData", (selector) => {
-  return cy.get(`[data-test="${selector}"]`)
+  return cy.get(`[data-test="${selector}"]`, { timeout: 10000 })
 })
 
 
