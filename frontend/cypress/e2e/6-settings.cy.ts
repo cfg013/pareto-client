@@ -27,7 +27,7 @@ describe('Settings tests', () => {
         .first()
         .click()
 
-        cy.wait(2000)        
+        cy.wait(2000)
 
         cy.getByData('remove-relay-button-nostr.pareto.space')
         .first()
@@ -173,5 +173,10 @@ describe('Settings tests', () => {
         .should('be.enabled')
         .click();
     })    
+
+    
+
+
 });
+
 
