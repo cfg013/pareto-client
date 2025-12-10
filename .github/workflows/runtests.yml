@@ -1,0 +1,23 @@
+name: Cypress Tests
+
+on: push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Rename pnpm-lock.yaml because Cypress can have only "pnpm" OR "npm" OR "yarn" lock file
+        run: mv frontend/pnpm-lock.yaml frontend/pnpm-lock.yaml.org
+      - name: typescript installation
+        run: |
+          npm install --save-dev typescript
+          tsc -v
+      # Install npm dependencies, cache them correctly and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: frontend
+          # build: npm run build
+          # start: npm start
