@@ -19,37 +19,46 @@ describe('Pareto uitest', () => {
     it('Category selector', function () {
 
         // initial state of both categories
-        cy.getByData('category-Category 1')
+        cy.getByData('category-uitest-category1')
         .should('be.visible')
         .should('be.enabled')
         .should('not.be.focused')
         .should('not.be.selected')        
-        cy.getByData('category-Category 2')
+        cy.getByData('category-uitest-category2')
         .should('be.visible')
         .should('not.be.enabled')
         .should('not.be.focused')
         .should('not.be.selected')        
 
         // press button 1
-        cy.getByData('category-Category 1').click()
+        cy.getByData('category-uitest-category1')
+        .click()
 
         // check both categories
-        cy.getByData('category-Category 1').should('not.be.enabled')
-        cy.getByData('category-Category 2').should('be.enabled')
+        cy.getByData('category-uitest-category1')
+        .should('not.be.enabled')
+        cy.getByData('category-uitest-category2')
+        .should('be.enabled')
 
         // press button 2
-        cy.getByData('category-Category 2').click()
+        cy.getByData('category-uitest-category2')
+        .click()
 
         // check both categories
-        cy.getByData('category-Category 1').should('be.enabled')
-        cy.getByData('category-Category 2').should('not.be.enabled')
+        cy.getByData('category-uitest-category1')
+        .should('be.enabled')
+        cy.getByData('category-uitest-category2')
+        .should('not.be.enabled')
 
         // press button 1 again
-        cy.getByData('category-Category 1').click()
+        cy.getByData('category-uitest-category1')
+        .click()
 
         // check both categories
-        cy.getByData('category-Category 1').should('not.be.enabled')
-        cy.getByData('category-Category 2').should('be.enabled')                
+        cy.getByData('category-uitest-category1')
+        .should('not.be.enabled')
+        cy.getByData('category-uitest-category2')
+        .should('be.enabled')                
     })        
 
     it('Dropdown', function () {
