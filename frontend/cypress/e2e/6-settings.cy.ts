@@ -94,7 +94,7 @@ describe('Settings tests', () => {
     })    
 
     // Todo: fails at the moment because server is not deleted
-    it.only('media servers tab', function () {
+    it('media servers tab', function () {
 
         cy.getByData('sidebar-item-Settings')    
         .click();
