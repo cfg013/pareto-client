@@ -207,5 +207,79 @@ describe('/read page tests', () => {
             });
     })
 
+    it('follow author/Followed tab', function () {
+
+        // recognize that the page has indeed been loaded
+        cy.getByData('switch-Reader-Creator')
+        .should('be.visible')
+        .should('be.enabled')
+
+        cy.wait(5000)
+
+        // check that "Followed" tab missing
+        cy.get('body > div._2eb2cf5d._96fb215c > div > div > div > div._9d51b360')
+        .children()
+        .should('have.length', 3)
+
+        cy.wait(5000)        
+
+        // click "Authors"
+        cy.getByData('sidebar-item-Authors')
+        .should('be.visible')
+        .click()
+
+        cy.wait(10000)
+
+        // click "bookmark" to mark the first author in the list
+        cy.get('#content-container > div > div > div:nth-child(1) > div._7090b945 > div._fc33df3e')
+        .click()
+
+        cy.wait(5000)
+
+        // click Read button
+        cy.getByData('sidebar-item-Read')
+        .should('be.visible')
+        .click()
+
+        cy.wait(5000)
+
+        // check that "Followed" tab appeared
+        cy.get('body > div._2eb2cf5d._96fb215c > div > div > div > div._9d51b360')
+        .children()        
+        .should('have.length', 4)
+        .contains('Followed')
+
+        cy.wait(2000)
+
+        cy.getByData('category-read-followed')
+        .should('be.visible')
+        .click()
+        
+        cy.wait(2000)
+
+        cy.get('body > div._2eb2cf5d._96fb215c > div > div > div > div._fcaabff1')
+        .contains('Load more')
+
+        cy.wait(5000)
+
+        // restore initial condition: do unfollow
+        cy.getByData('sidebar-item-Authors')
+        .should('be.visible')
+        .click()
+        cy.wait(5000)
+        cy.get('#content-container > div > div > div:nth-child(1) > div._7090b945 > div._fc33df3e')
+        .click()
+        cy.wait(20000)
+        cy.getByData('sidebar-item-Read')
+        .should('be.visible')
+        .click()
+        cy.wait(5000)        
+
+        // check that "Followed" tab disappeared
+        cy.get('body > div._2eb2cf5d._96fb215c > div > div > div > div._9d51b360')
+        .children()        
+        .should('have.length', 3)
+    })        
+
 })
 
