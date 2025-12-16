@@ -202,14 +202,14 @@ export const onReady = ({ app, env }) => {
 
     if (preloadData) {
       const nostrEvents = preloadData.events;
-      const eventAuthor = preloadData.author;
+      const eventAuthors = preloadData.authors;
 
-      if (eventAuthor) {
-        app.ports.receiveMessage.send({ messageType: 'author', value: eventAuthor });
+      if (eventAuthors) {
+        app.ports.receiveMessage.send({ messageType: 'authors', value: eventAuthors });
       }
 
       if (nostrEvents) {
-        processEvents(app, -1, "", nostrEvents);
+        processEvents(app, 0, "", nostrEvents);
       }
     }
   }

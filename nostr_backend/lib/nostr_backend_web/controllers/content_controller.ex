@@ -60,24 +60,6 @@ defmodule NostrBackendWeb.ContentController do
             #            |> render(NostrBackendWeb.ErrorHTML, :"404")
         end
 
-      {:ok, {:author_article, address_info}} ->
-        case ArticleCache.get_article(address_info) do
-          {:ok, article} ->
-            article = apply_substitution_if_bot(conn, article)
-
-            conn
-            |> conn_with_article_meta(article, [])
-            |> put_view(NostrBackendWeb.ContentHTML)
-            |> render(:article, article: article)
-
-          {:error, _reason} ->
-            conn
-            |> conn_with_default_meta()
-            |> render(:not_found, layout: false)
-
-            #            |> render(NostrBackendWeb.ErrorHTML, :"404")
-        end
-
       {:ok, {:event, event_info}} ->
         case ArticleCache.get_article(event_info) do
           {:ok, article} ->
@@ -144,27 +126,6 @@ defmodule NostrBackendWeb.ContentController do
             |> conn_with_default_meta()
             |> put_view(NostrBackendWeb.ContentHTML)
             |> render(:note, note: note)
-
-          {:error, reason} ->
-            Logger.debug("ERROR REASON: #{inspect(reason)}")
-
-            conn
-            |> conn_with_default_meta()
-            |> render(:not_found, layout: false)
-
-            #            |> render(NostrBackendWeb.ErrorHTML, :"404")
-        end
-
-      {:ok, {:author_article, query_data}} ->
-        case ArticleCache.get_article(query_data) do
-          {:ok, article} ->
-            relay = Map.get(query_data, :relay)
-            relays_list = Map.get(query_data, :relays, if(relay, do: [relay], else: []))
-
-            conn
-            |> conn_with_article_meta(article, relays_list)
-            |> put_view(NostrBackendWeb.ContentHTML)
-            |> render(:article, article: article)
 
           {:error, reason} ->
             Logger.debug("ERROR REASON: #{inspect(reason)}")
@@ -343,7 +304,6 @@ defmodule NostrBackendWeb.ContentController do
   end
 
   defp conn_with_article_meta(conn, article, _relays) do
-    author_context = Map.get(conn.assigns, :nostr_author_info)
     raw_event = Map.get(article, :raw_event)
 
     relays_list =
@@ -550,9 +510,6 @@ defmodule NostrBackendWeb.ContentController do
     |> assign(:nostr_event_json, nil)
   end
 
-  defp build_author_context(nil, _pubkey), do: nil
-  defp build_author_context("", _pubkey), do: nil
-
   defp build_author_context(user_nip05, pubkey) do
     author =
       %{
@@ -565,26 +522,30 @@ defmodule NostrBackendWeb.ContentController do
     if map_size(author) == 0 do
       nil
     else
-      %{author: author}
+      %{authors: [author]}
     end
   end
 
   defp merge_author_profile(context, nil), do: context
+  defp merge_author_profile(nil, _profile), do: nil
 
-  defp merge_author_profile(context, profile) do
+  defp merge_author_profile(%{authors: authors} = context, profile) when is_list(authors) do
     pubkey = Map.get(profile, :profile_id) || Map.get(profile, "profile_id")
 
-    author_map =
-      context
-      |> extract_author_map()
-      |> Map.put_new("pubkey", pubkey)
+    authors =
+      if is_binary(pubkey) and pubkey != "" do
+        Enum.map(authors, fn
+          author when is_map(author) -> Map.put_new(author, "pubkey", pubkey)
+          other -> other
+        end)
+      else
+        authors
+      end
 
-    %{author: author_map}
+    %{context | authors: authors}
   end
 
-  defp extract_author_map(%{author: author}) when is_map(author), do: author
-  defp extract_author_map(%{"author" => author}) when is_map(author), do: author
-  defp extract_author_map(_), do: %{}
+  defp merge_author_profile(context, _profile), do: context
 
   def force_https(nil), do: nil
 
