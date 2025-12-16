@@ -226,8 +226,13 @@ describe('Creator tests', () => {
         // show current posts in Published
         cy.get('body > div > div > div > aside > div > div._fb2f033d._4b80ae7e')
         .click()
+
+        cy.wait(5000)
+
         cy.getByData('category-posts-published')
         .click()
+
+        cy.wait(5000)
 
         // check number of published articles to be zero
         cy.get('#content-container > div > div > div._173135dd')
@@ -257,7 +262,7 @@ describe('Creator tests', () => {
         cy.get('#content-container > div > div._1349e14f._96fb215c > div > div._aed52b3f > div')
         .should('be.visible')
         .contains('Error deleting draft')        
-        cy.wait(1000)
+        cy.wait(5000)
         cy.getByData('Ok')
         .click()
 
