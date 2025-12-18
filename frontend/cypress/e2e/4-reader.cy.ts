@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 
-describe('/read page tests', () => {
+describe('/read page tests (logged in)', () => {
 
     beforeEach(() => {
         // TODO: sometimes i need to visit the site twice or three times or ...

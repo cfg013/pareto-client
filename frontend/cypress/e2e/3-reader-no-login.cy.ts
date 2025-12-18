@@ -3,7 +3,7 @@
 //https://github.com/dmtrKovalenko/cypress-real-events
 //import "cypress-real-events";
 
-describe('/read page tests', () => {
+describe('/read page tests (not logged in)', () => {
 
     it('check buttons', function () {
 
